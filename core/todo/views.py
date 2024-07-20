@@ -30,7 +30,7 @@ class TaskDetail(LoginRequiredMixin, DetailView):
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     fields = ['title', 'description', 'completed']
-    success_url = reverse_lazy('tasks')
+    success_url = reverse_lazy('task-list')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -41,7 +41,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ['title', 'description', 'completed']
-    success_url = reverse_lazy('tasks')
+    success_url = reverse_lazy('task-list')
 
     def form_valid(self, form):
         messages.success(self.request, "The task was updated successfully.")
@@ -55,7 +55,7 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
 class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'task'
-    success_url = reverse_lazy('tasks')
+    success_url = reverse_lazy('task-list')
 
     def form_valid(self, form):
         messages.success(self.request, "The task was deleted successfully.")
